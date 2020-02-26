@@ -6,7 +6,7 @@ const lightTheme = {
     colors: {
         background: '#fff',
         text: '#212529',
-        link: '#212529',
+        link: '#ff1ac2',
     },
     breakpoints: {
         desktop: '@media all and (min-width: 900px)',

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import Conf from '../components/images/Conf';
+import MainHome from '../components/events/MainHome';
 
 const events = [
     {
@@ -10,25 +11,25 @@ const events = [
         date: '2020-02-20',
         description:
             'Around the world that bring together different communities to celebrate how we can make our world easy for all.',
-        image: '',
+        image: () => <Conf />,
     },
     {
         title: 'Sistemas de diseño',
         date: '2020-03-10',
         description: 'Around the world that bring together.',
-        image: '',
+        image: null,
     },
     {
         title: 'Service Design',
         date: '2020-03-20',
         description: 'Around the world that bring together.',
-        image: '',
+        image: null,
     },
     {
         title: 'Human Centric Design',
         date: '2020-03-22',
         description: 'Around the world that bring together.',
-        image: '',
+        image: null,
     },
 ];
 
@@ -55,14 +56,16 @@ const articles = [
     },
 ];
 
-const IndexPage = () => (
-    <Layout>
-        <SEO title="Home" />
-        <h1>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-        <Link to="/page-2/">Go to page 2</Link>
-    </Layout>
-);
+const IndexPage = () => {
+    const mainEvent = events[0];
+    const otherEvents = events.slice(1);
+
+    return (
+        <Layout>
+            <SEO title="Home" />
+            <MainHome event={mainEvent} />
+        </Layout>
+    );
+};
 
 export default IndexPage;

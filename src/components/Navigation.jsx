@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import Logo from './Logo';
+import Logo from './images/Logo';
 
 const Nav = styled.nav`
     display: flex;
@@ -31,7 +31,7 @@ const ToggleMenuButton = styled.button`
     cursor: pointer;
     outline: 0;
     order: 3;
-    margin: 15px 10px 0 0;
+    margin: 20px 10px 0 0;
     align-self: flex-start;
 
     ${props => props.theme.breakpoints.desktop} {
