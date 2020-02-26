@@ -4,27 +4,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const FooterComponent = styled.footer`
+    text-align: center;
     background-image: radial-gradient(circle at 50% 0, #f8f8f8, #ffffff 91%);
 `;
 
 const SocialList = styled.ul`
     list-style: none;
+    display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0;
+    min-height: 200px;
+`;
+
+const SocialItem = styled.li`
+    margin: 0 0.5rem;
 `;
 
 const Footer = () => (
     <FooterComponent>
-        <h1>Siguenos en</h1>
+        <h3>Siguenos en</h3>
         <SocialList>
-            <li>
+            <SocialItem>
                 <a href="https://twitter.com/UXMexico">
                     <FontAwesomeIcon icon={faTwitter} />
                 </a>
-            </li>
-            <li>
+            </SocialItem>
+            <SocialItem>
                 <a href="https://www.facebook.com/UXMexico">
                     <FontAwesomeIcon icon={faFacebook} />
                 </a>
-            </li>
+            </SocialItem>
         </SocialList>
     </FooterComponent>
 );

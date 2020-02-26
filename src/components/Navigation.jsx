@@ -16,7 +16,8 @@ const Nav = styled.nav`
     margin-bottom: 10px;
 
     ${props => props.theme.breakpoints.desktop} {
-        align-items: center;
+        align-items: flex-end;
+        padding: 0 1rem;
     }
 `;
 
@@ -25,13 +26,13 @@ const ToggleMenuButton = styled.button`
     font-size: 1.25rem;
     line-height: 1;
     background-color: transparent;
-    border: 1px solid ${props => props.theme.colors.text};
-    border-radius: 0.25rem;
+    border: 0;
     color: ${props => props.theme.colors.text};
     cursor: pointer;
     outline: 0;
     order: 3;
-    margin: 3px 10px 0 0;
+    margin: 15px 10px 0 0;
+    align-self: flex-start;
 
     ${props => props.theme.breakpoints.desktop} {
         display: none;
@@ -64,6 +65,12 @@ const NavLink = styled(Link)`
     ${props => props.theme.breakpoints.desktop} {
         padding: 10px 15px;
     }
+`;
+
+const LogoText = styled.span`
+    display: inline-block;
+    font-size: 1.5rem;
+    margin: 0 0 5px 5px;
 `;
 
 const Navigation = () => {
@@ -99,8 +106,9 @@ const Navigation = () => {
             <Link
                 to="/"
                 css={theme => css`
+                    margin: 20px 0 0 10px;
+                    height: 50px;
                     align-self: flex-start;
-                    padding: 5px 0 0 10px;
                     display: inline-block;
                     color: ${theme.colors.text};
                     font-size: 30px;
@@ -110,7 +118,8 @@ const Navigation = () => {
                     width: auto;
                     outline: none;
                     flex-grow: 1;
-                    transition: color ${theme.transition};
+                    display: flex;
+                    align-items: center;
 
                     ${theme.breakpoints.desktop} {
                         flex-grow: 0;
@@ -119,9 +128,13 @@ const Navigation = () => {
                 `}
             >
                 <Logo />
+                <LogoText>México</LogoText>
             </Link>
             <ToggleMenuButton aria-label="Toggle Menu" onClick={_toggleMenu}>
-                <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
+                <FontAwesomeIcon
+                    fixedWidth
+                    icon={menuOpen ? faTimes : faBars}
+                />
             </ToggleMenuButton>
             <NavList>
                 <NavListItem>

@@ -11,7 +11,7 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 
 const Container = styled.div`
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-flow: row wrap;
@@ -22,12 +22,11 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
-    padding: 0 15px 0 10px;
     max-width: 100%;
 
     ${props => props.theme.breakpoints.desktop} {
         margin-top: 10px;
-        padding: 0;
+        padding: 0 1rem;
     }
 `;
 

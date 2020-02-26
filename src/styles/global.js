@@ -26,9 +26,14 @@ const global = theme => css`
         font-feature-settings: 'kern', 'liga', 'clig', 'calt';
     }
 
+    a {
+        color: ${theme.colors.link};
+    }
+
     img {
         max-width: 100%;
     }
+
     h1,
     h2,
     h3,

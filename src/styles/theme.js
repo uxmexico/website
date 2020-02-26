@@ -1,7 +1,7 @@
 const lightTheme = {
     blockMarginBottom: '1.5rem',
     fonts: {
-        text: "Roboto",
+        text: 'Roboto',
     },
     colors: {
         background: '#fff',

@@ -1,5 +1,11 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { useStaticQuery, graphql } from 'gatsby';
+
+const Img = styled.img`
+    height: 40px;
+    display: inline-block;
+`;
 
 const Logo = () => {
     const data = useStaticQuery(graphql`
@@ -17,12 +23,9 @@ const Logo = () => {
     `);
 
     return (
-        <img
+        <Img
             src={data.placeholderImage.publicURL}
             alt={data.site.siteMetadata.title}
-            style={{
-                height: '50px',
-            }}
         />
     );
 };
