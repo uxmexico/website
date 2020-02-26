@@ -16,10 +16,14 @@ const Footer = () => (
         <h1>Siguenos en</h1>
         <SocialList>
             <li>
-                <FontAwesomeIcon icon={faTwitter} />
+                <a href="https://twitter.com/UXMexico">
+                    <FontAwesomeIcon icon={faTwitter} />
+                </a>
             </li>
             <li>
-                <FontAwesomeIcon icon={faFacebook} />
+                <a href="https://www.facebook.com/UXMexico">
+                    <FontAwesomeIcon icon={faFacebook} />
+                </a>
             </li>
         </SocialList>
     </FooterComponent>
