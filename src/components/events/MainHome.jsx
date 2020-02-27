@@ -1,9 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import Img from 'gatsby-image';
 import { Link } from 'gatsby';
-import { format, parseISO } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { es } from 'date-fns/locale';
+
+const MainEventContainer = styled.section`
+    padding-bottom: 20px;
+`;
 
 const Title = styled.h2`
     text-align: center;
@@ -15,7 +20,7 @@ const Description = styled.p`
     font-size: 0.9rem;
 `;
 
-const Date = styled.p`
+const EventDate = styled.p`
     color: #999;
     text-align: center;
     text-transform: uppercase;
@@ -35,18 +40,32 @@ const CTAButton = styled.button`
 `;
 
 const MainHome = ({ event }) => {
-    const date = format(parseISO(event.date), 'dd MMMM, y', { locale: es });
+    const {
+        title,
+        slug,
+        excerpt,
+        acf: { date: eventDate, eventbrite_url, location },
+        featured_media,
+    } = event.node;
+    const formatedDate = format(
+        parse(eventDate, 'MM/dd/yyyy', new Date()),
+        'dd MMMM, y',
+        { locale: es },
+    );
 
     return (
-        <Fragment>
-            {event.image && event.image()}
-            <Title>{event.title}</Title>
-            <Description>
-                {event.description} <Link to="/events">Saber más</Link>
-            </Description>
-            <Date>{date}</Date>
+        <MainEventContainer>
+            {featured_media && (
+                <Img
+                    fluid={featured_media.localFile.childImageSharp.fluid}
+                    alt={title}
+                />
+            )}
+            <Title>{title}</Title>
+            <Description dangerouslySetInnerHTML={{ __html: excerpt }} />
+            <EventDate>{formatedDate}</EventDate>
             <CTAButton>¡Quiero asistir!</CTAButton>
-        </Fragment>
+        </MainEventContainer>
     );
 };
 

@@ -16,6 +16,24 @@ module.exports = {
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         {
+            resolve: "gatsby-source-wordpress",
+            options: {
+                baseUrl: 'uxmexico.test',
+                protocol: 'http',
+                hostingWPCOM: false,
+                useACF: true,
+                includedRoutes: [
+                    "**/posts",
+                    "**/pages",
+                    "**/events",
+                    "**/media",
+                    "**/categories",
+                    "**/taxonomies",
+                    "**/tags",
+                ],
+            },
+        },
+        {
             resolve: `gatsby-plugin-manifest`,
             options: {
                 name: `UX Mexico`,
