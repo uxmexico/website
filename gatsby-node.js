@@ -9,7 +9,7 @@ const makeEvents = async ({ graphql, actions }) => {
     const eventsListTemplate = path.resolve('src/templates/eventsList.jsx');
 
     const { errors, data } = await graphql(`
-        query EventsHome {
+        query AllEvents {
             allWordpressWpEvents(filter: { status: { eq: "publish" } }) {
                 edges {
                     node {
@@ -54,6 +54,43 @@ const makeEvents = async ({ graphql, actions }) => {
     });
 };
 
+const makeStaticPages = async ({ actions, graphql }) => {
+    const { createPage } = actions;
+
+    const pageTemplate = path.resolve('src/templates/page.jsx');
+
+    const { errors, data } = await graphql(`
+        query AllPages {
+            allWordpressPage(filter: { status: { eq: "publish" } }) {
+                edges {
+                    node {
+                        slug
+                    }
+                }
+            }
+        }
+    `);
+
+    if (errors) {
+        throw new Error(errors);
+    }
+
+    const pages = data.allWordpressPage.edges;
+
+    pages.forEach(page => {
+        createPage({
+            path: page.node.slug,
+            component: pageTemplate,
+            context: {
+                slug: page.node.slug,
+            },
+        });
+    });
+};
+
 exports.createPages = async ({ actions, graphql }) => {
-    await Promise.all([makeEvents({ actions, graphql })]);
+    await Promise.all([
+        makeEvents({ actions, graphql }),
+        makeStaticPages({ actions, graphql }),
+    ]);
 };

@@ -44,7 +44,7 @@ const EventDate = styled.p`
     font-size: 0.9rem;
 `;
 
-const Event = ({ data, pageContext }) => {
+const Event = ({ data }) => {
     const {
         title,
         content,

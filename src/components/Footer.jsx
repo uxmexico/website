@@ -14,7 +14,7 @@ const SocialList = styled.ul`
     justify-content: center;
     font-size: 1.6rem;
     margin: 0;
-    min-height: 200px;
+    padding-bottom: 20px;
 `;
 
 const SocialItem = styled.li`

@@ -138,7 +138,7 @@ const Navigation = () => {
             </ToggleMenuButton>
             <NavList>
                 <NavListItem>
-                    <NavLink to="/" activeClassName="current" partiallyActive>
+                    <NavLink to="/" activeClassName="current">
                         Home
                     </NavLink>
                 </NavListItem>
@@ -158,15 +158,6 @@ const Navigation = () => {
                         partiallyActive
                     >
                         Blog
-                    </NavLink>
-                </NavListItem>
-                <NavListItem>
-                    <NavLink
-                        to="/jobs"
-                        activeClassName="current"
-                        partiallyActive
-                    >
-                        Bolsa de Trabajo
                     </NavLink>
                 </NavListItem>
                 <NavListItem>
