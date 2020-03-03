@@ -63,7 +63,7 @@ const EventsList = ({ data, pageContext }) => {
 
     return (
         <Layout>
-            <SEO title="Eventos" />
+            <SEO title={`Eventos - Página ${currentPageNum}`} />
 
             <Container>
                 <h1>Pŕoximos Eventos</h1>

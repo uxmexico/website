@@ -9,7 +9,7 @@ import { es } from 'date-fns/locale';
 import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 
-export const eventgQuery = graphql`
+export const eventQuery = graphql`
     query EventQuery($slug: String!) {
         wordpressWpEvents(slug: { eq: $slug }, status: { eq: "publish" }) {
             title

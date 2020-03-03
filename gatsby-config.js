@@ -31,6 +31,7 @@ module.exports = {
                     '**/categories',
                     '**/taxonomies',
                     '**/tags',
+                    '**/users',
                 ],
                 plugins: [
                     {
