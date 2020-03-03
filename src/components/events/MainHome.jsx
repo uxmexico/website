@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Img from 'gatsby-image';
+import ReactHtmlParser from 'react-html-parser';
 import { Link } from 'gatsby';
 import { format, parse } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -14,7 +15,7 @@ const Title = styled.h2`
     text-align: center;
 `;
 
-const Description = styled.p`
+const Description = styled.section`
     padding: 0 20px;
     text-align: center;
     font-size: 0.9rem;
@@ -62,7 +63,7 @@ const MainHome = ({ event }) => {
                 />
             )}
             <Title>{title}</Title>
-            <Description dangerouslySetInnerHTML={{ __html: excerpt }} />
+            <Description>{ReactHtmlParser(excerpt)}</Description>
             <EventDate>{formatedDate}</EventDate>
             <CTAButton>¡Quiero asistir!</CTAButton>
         </MainEventContainer>

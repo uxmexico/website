@@ -23,12 +23,14 @@
         "gatsby-source-filesystem": "^2.1.46",
         "gatsby-source-wordpress": "^3.1.63",
         "gatsby-transformer-sharp": "^2.3.13",
+        "gatsby-wordpress-inline-images": "^1.2.1",
         "node-sass": "^4.13.1",
         "normalize.css": "^8.0.1",
         "prop-types": "^15.7.2",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-helmet": "^6.0.0-beta.2",
+        "react-html-parser": "^2.0.2",
         "typeface-roboto": "^0.0.75"
     },
     "devDependencies": {

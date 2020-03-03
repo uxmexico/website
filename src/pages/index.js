@@ -34,6 +34,7 @@ const IndexPage = () => {
     const events = useStaticQuery(graphql`
         query EventsHome {
             allWordpressWpEvents(
+                filter: {status: {eq: "publish"}}
                 sort: { fields: acf___date, order: ASC }
                 limit: 5
             ) {
@@ -42,7 +43,6 @@ const IndexPage = () => {
                         id
                         title
                         slug
-                        content
                         excerpt
                         acf {
                             date
