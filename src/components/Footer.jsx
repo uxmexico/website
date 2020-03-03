@@ -26,12 +26,12 @@ const Footer = () => (
         <h3>Siguenos en</h3>
         <SocialList>
             <SocialItem>
-                <a href="https://twitter.com/UXMexico">
+                <a href="https://twitter.com/UXMexico" title="Twitter">
                     <FontAwesomeIcon icon={faTwitter} />
                 </a>
             </SocialItem>
             <SocialItem>
-                <a href="https://www.facebook.com/UXMexico">
+                <a href="https://www.facebook.com/UXMexico" title="Facebook">
                     <FontAwesomeIcon icon={faFacebook} />
                 </a>
             </SocialItem>

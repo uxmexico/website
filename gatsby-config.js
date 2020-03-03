@@ -13,6 +13,7 @@ module.exports = {
                 path: `${__dirname}/src/images`,
             },
         },
+        `gatsby-plugin-emotion`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         {
@@ -54,9 +55,8 @@ module.exports = {
                 icon: `src/images/logo-uxmexico.svg`, // This path is relative to the root of the site.
             },
         },
-        `gatsby-plugin-emotion`,
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
-        // `gatsby-plugin-offline`,
+        `gatsby-plugin-offline`,
     ],
 };
