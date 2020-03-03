@@ -45,7 +45,7 @@ const MainHome = ({ event }) => {
         title,
         slug,
         excerpt,
-        acf: { date: eventDate, eventbrite_url, location },
+        acf: { date: eventDate },
         featured_media,
     } = event.node;
     const formatedDate = format(
@@ -62,7 +62,9 @@ const MainHome = ({ event }) => {
                     alt={title}
                 />
             )}
-            <Title>{title}</Title>
+            <Title>
+                <Link to={`/events/${slug}`}>{title}</Link>
+            </Title>
             <Description>{ReactHtmlParser(excerpt)}</Description>
             <EventDate>{formatedDate}</EventDate>
             <CTAButton>¡Quiero asistir!</CTAButton>

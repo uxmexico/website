@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
@@ -7,34 +6,11 @@ import SEO from '../components/SEO';
 import MainHome from '../components/events/MainHome';
 import NextEvents from '../components/events/NextEvents';
 
-const articles = [
-    {
-        title: 'Title 1',
-        description: 'Description 1',
-        image: '',
-    },
-    {
-        title: 'Title 2',
-        description: 'Description 1',
-        image: '',
-    },
-    {
-        title: 'Title 3',
-        description: 'Description 1',
-        image: '',
-    },
-    {
-        title: 'Title 4',
-        description: 'Description 1',
-        image: '',
-    },
-];
-
 const IndexPage = () => {
     const events = useStaticQuery(graphql`
         query EventsHome {
             allWordpressWpEvents(
-                filter: {status: {eq: "publish"}}
+                filter: { status: { eq: "publish" } }
                 sort: { fields: acf___date, order: ASC }
                 limit: 5
             ) {
