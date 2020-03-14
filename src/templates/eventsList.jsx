@@ -66,7 +66,7 @@ const EventsList = ({ data, pageContext }) => {
             <SEO title={`Eventos - Página ${currentPageNum}`} />
 
             <Container>
-                <h1>Pŕoximos Eventos</h1>
+                <h1>Próximos Eventos</h1>
 
                 {data.allWordpressWpEvents.edges.map(({ node }) => {
                     const {

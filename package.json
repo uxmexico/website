@@ -20,6 +20,7 @@
         "gatsby-plugin-offline": "^3.0.40",
         "gatsby-plugin-react-helmet": "^3.1.23",
         "gatsby-plugin-sharp": "^2.4.12",
+        "gatsby-plugin-twitter": "^2.1.20",
         "gatsby-source-filesystem": "^2.1.55",
         "gatsby-source-wordpress": "^3.1.71",
         "gatsby-transformer-sharp": "^2.3.18",
