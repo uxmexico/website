@@ -9,28 +9,26 @@ import NextEvents from '../components/events/NextEvents';
 const IndexPage = () => {
     const events = useStaticQuery(graphql`
         query EventsHome {
-            allWordpressWpEvents(
-                filter: { status: { eq: "publish" } }
-                sort: { fields: acf___date, order: ASC }
+            allWpEvent(
                 limit: 5
+                sort: { fields: eventmeta___date, order: ASC }
+                filter: { status: { eq: "publish" } }
             ) {
-                edges {
-                    node {
-                        id
-                        title
-                        slug
-                        excerpt
-                        acf {
-                            date
-                            eventbrite_url
-                        }
-                        featured_media {
-                            localFile {
-                                childImageSharp {
-                                    fluid(maxWidth: 1200) {
-                                        ...GatsbyImageSharpFluid
-                                        presentationWidth
-                                    }
+                nodes {
+                    id
+                    title
+                    slug
+                    excerpt
+                    eventmeta {
+                        date
+                        eventbriteUrl
+                    }
+                    featuredImage {
+                        localFile {
+                            childImageSharp {
+                                fluid(maxWidth: 1200) {
+                                    ...GatsbyImageSharpFluid
+                                    presentationWidth
                                 }
                             }
                         }
@@ -40,8 +38,8 @@ const IndexPage = () => {
         }
     `);
 
-    const mainEvent = events.allWordpressWpEvents.edges[0];
-    const otherEvents = events.allWordpressWpEvents.edges.slice(1);
+    const mainEvent = events.allWpEvent.nodes[0];
+    const otherEvents = events.allWpEvent.nodes.slice(1);
 
     return (
         <Layout>

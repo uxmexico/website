@@ -8,7 +8,7 @@ import Layout from '../components/Layout';
 
 export const eventgQuery = graphql`
     query PageQuery($slug: String!) {
-        wordpressPage(slug: { eq: $slug }, status: { eq: "publish" }) {
+        wpPage(slug: { eq: $slug }, status: { eq: "publish" }) {
             title
             content
         }
@@ -21,7 +21,7 @@ const PageContainer = styled.article`
 `;
 
 const StaticPage = ({ data }) => {
-    const { title, content } = data.wordpressPage;
+    const { title, content } = data.wpPage;
 
     return (
         <Layout>

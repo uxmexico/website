@@ -45,9 +45,9 @@ const MainHome = ({ event }) => {
         title,
         slug,
         excerpt,
-        acf: { date: eventDate },
-        featured_media,
-    } = event.node;
+        eventmeta: { date: eventDate },
+        featuredImage,
+    } = event;
     const formatedDate = format(
         parse(eventDate, 'MM/dd/yyyy', new Date()),
         'dd MMMM, y',
@@ -56,9 +56,9 @@ const MainHome = ({ event }) => {
 
     return (
         <MainEventContainer>
-            {featured_media && (
+            {featuredImage && (
                 <Img
-                    fluid={featured_media.localFile.childImageSharp.fluid}
+                    fluid={featuredImage.localFile.childImageSharp.fluid}
                     alt={title}
                 />
             )}

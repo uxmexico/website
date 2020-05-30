@@ -11,11 +11,9 @@ const makeEvents = async ({ graphql, actions }) => {
 
     const { errors, data } = await graphql(`
         query AllEvents {
-            allWordpressWpEvents(filter: { status: { eq: "publish" } }) {
-                edges {
-                    node {
-                        slug
-                    }
+            allWpEvent(filter: { status: { eq: "publish" } }) {
+                nodes {
+                    slug
                 }
             }
         }
@@ -25,7 +23,7 @@ const makeEvents = async ({ graphql, actions }) => {
         throw new Error(errors);
     }
 
-    const events = data.allWordpressWpEvents.edges;
+    const events = data.allWpEvent.nodes;
 
     // Create pages for events list pagination
     const pageCount = Math.ceil(events.length / EVENTS_PER_PAGE);
@@ -44,12 +42,12 @@ const makeEvents = async ({ graphql, actions }) => {
     });
 
     // And create page for each single event.
-    events.forEach(event => {
+    events.forEach((event) => {
         createPage({
-            path: `/events/${event.node.slug}`,
+            path: `/events/${event.slug}`,
             component: eventTemplate,
             context: {
-                slug: event.node.slug,
+                slug: event.slug,
             },
         });
     });
@@ -62,11 +60,9 @@ const makeStaticPages = async ({ actions, graphql }) => {
 
     const { errors, data } = await graphql(`
         query AllPages {
-            allWordpressPage(filter: { status: { eq: "publish" } }) {
-                edges {
-                    node {
-                        slug
-                    }
+            allWpPage(filter: { status: { eq: "publish" } }) {
+                nodes {
+                    slug
                 }
             }
         }
@@ -76,14 +72,14 @@ const makeStaticPages = async ({ actions, graphql }) => {
         throw new Error(errors);
     }
 
-    const pages = data.allWordpressPage.edges;
+    const pages = data.allWpPage.nodes;
 
-    pages.forEach(page => {
+    pages.forEach((page) => {
         createPage({
-            path: `/${page.node.slug}`,
+            path: `/${page.slug}`,
             component: pageTemplate,
             context: {
-                slug: page.node.slug,
+                slug: page.slug,
             },
         });
     });
@@ -96,12 +92,10 @@ const makeBlogPages = async ({ actions, graphql }) => {
     const postsListTemplate = path.resolve('src/templates/postsList.jsx');
 
     const { errors, data } = await graphql(`
-        query AllPosts {
-            allWordpressPost(filter: { status: { eq: "publish" } }) {
-                edges {
-                    node {
-                        slug
-                    }
+        query AllPages {
+            allWpPost(filter: { status: { eq: "publish" } }) {
+                nodes {
+                    slug
                 }
             }
         }
@@ -111,7 +105,7 @@ const makeBlogPages = async ({ actions, graphql }) => {
         throw new Error(errors);
     }
 
-    const posts = data.allWordpressPost.edges;
+    const posts = data.allWpPost.nodes;
 
     // Create pages for posts list pagination
     const pageCount = Math.ceil(posts.length / POSTS_PER_PAGE);
@@ -130,12 +124,12 @@ const makeBlogPages = async ({ actions, graphql }) => {
     });
 
     // And create page for each single post.
-    posts.forEach(post => {
+    posts.forEach((post) => {
         createPage({
-            path: `/blog/${post.node.slug}`,
+            path: `/blog/${post.slug}`,
             component: postTemplate,
             context: {
-                slug: post.node.slug,
+                slug: post.slug,
             },
         });
     });

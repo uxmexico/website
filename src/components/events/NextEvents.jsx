@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import ReactHtmlParser from 'react-html-parser';
 import { format, parse } from 'date-fns';
 import { es } from 'date-fns/locale';
 
@@ -27,13 +28,13 @@ const NextEvents = ({ events }) => {
         <EventsContainer>
             <Heading>Próximos Eventos</Heading>
 
-            {events.map(({ node: event }) => {
+            {events.map((event) => {
                 const {
                     id,
                     title,
                     slug,
                     excerpt,
-                    acf: { date: eventDate },
+                    eventmeta: { date: eventDate },
                 } = event;
 
                 const formatedDate = format(
@@ -45,9 +46,9 @@ const NextEvents = ({ events }) => {
                 return (
                     <Event key={id}>
                         <EventTitle>{title}</EventTitle>
-                        <EventDescription
-                            dangerouslySetInnerHTML={{ __html: excerpt }}
-                        />
+                        <EventDescription>
+                            {ReactHtmlParser(excerpt)}
+                        </EventDescription>
                     </Event>
                 );
             })}

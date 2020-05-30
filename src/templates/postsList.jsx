@@ -11,20 +11,18 @@ import Pagination from '../components/Pagination';
 
 export const postsListQuery = graphql`
     query PostsListing($skip: Int!, $limit: Int!) {
-        allWordpressPost(
+        allWpPost(
             filter: { status: { eq: "publish" } }
             sort: { fields: date, order: ASC }
             limit: $limit
             skip: $skip
         ) {
-            edges {
-                node {
-                    id
-                    title
-                    slug
-                    date(formatString: "YYYY-MM-DD HH:mm:ss ZZ")
-                    excerpt
-                }
+            nodes {
+                id
+                title
+                slug
+                date(formatString: "YYYY-MM-DD HH:mm:ss ZZ")
+                excerpt
             }
         }
     }
@@ -44,8 +42,8 @@ const PostList = ({ data, pageContext }) => {
             <SEO title={`Blog - Página ${currentPageNum}`} />
 
             <Container>
-                {data.allWordpressPost.edges.map(({ node }) => {
-                    const { id, title, date: postDate, slug, excerpt } = node;
+                {data.allWpPost.nodes.map((post) => {
+                    const { id, title, date: postDate, slug, excerpt } = post;
 
                     const formatedDate = format(
                         parse(postDate, 'yyyy-MM-dd HH:mm:ss XX', new Date()),

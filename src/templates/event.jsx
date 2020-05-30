@@ -11,15 +11,15 @@ import Layout from '../components/Layout';
 
 export const eventQuery = graphql`
     query EventQuery($slug: String!) {
-        wordpressWpEvents(slug: { eq: $slug }, status: { eq: "publish" }) {
+        wpEvent(status: { eq: "publish" }, slug: { eq: $slug }) {
             title
             content
-            acf {
+            eventmeta {
                 address
                 date
-                eventbrite_url
+                eventbriteUrl
             }
-            featured_media {
+            featuredImage {
                 localFile {
                     childImageSharp {
                         fluid(maxWidth: 1200) {
@@ -48,9 +48,9 @@ const Event = ({ data }) => {
     const {
         title,
         content,
-        acf: { address, date: eventDate },
-        featured_media,
-    } = data.wordpressWpEvents;
+        eventmeta: { address, date: eventDate },
+        featuredImage,
+    } = data.wpEvent;
 
     const formatedDate = format(
         parse(eventDate, 'MM/dd/yyyy', new Date()),
@@ -63,9 +63,9 @@ const Event = ({ data }) => {
             <SEO title={`Eventos - ${title}`} />
 
             <EventContainer>
-                {featured_media && (
+                {featuredImage && (
                     <Img
-                        fluid={featured_media.localFile.childImageSharp.fluid}
+                        fluid={featuredImage.localFile.childImageSharp.fluid}
                         alt={title}
                     />
                 )}

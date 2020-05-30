@@ -10,19 +10,26 @@ import Layout from '../components/Layout';
 
 export const postQuery = graphql`
     query PostQuery($slug: String!) {
-        wordpressPost(slug: { eq: $slug }, status: { eq: "publish" }) {
+        wpPost(slug: { eq: $slug }, status: { eq: "publish" }) {
             title
             slug
             content
             date(formatString: "YYYY-MM-DD HH:mm:ss ZZ")
-            author
-            categories {
-                slug
+            author {
                 name
+                slug
+            }
+            categories {
+                nodes {
+                    slug
+                    name
+                }
             }
             tags {
-                slug
-                name
+                nodes {
+                    slug
+                    name
+                }
             }
         }
     }
@@ -47,9 +54,13 @@ const Post = ({ data }) => {
         title,
         content,
         date: postDate,
-        categories,
-        tags,
-    } = data.wordpressPost;
+        categories: {
+            nodes: categories
+        },
+        tags: {
+            nodes: tags
+        },
+    } = data.wpPost;
 
     const formatedDate = format(
         parse(postDate, 'yyyy-MM-dd HH:mm:ss XX', new Date()),
@@ -62,12 +73,6 @@ const Post = ({ data }) => {
             <SEO title={`Blog - ${title}`} />
 
             <PostContainer>
-                {/* {featured_media && (
-                    <Img
-                        fluid={featured_media.localFile.childImageSharp.fluid}
-                        alt={title}
-                    />
-                )} */}
                 <h1>{title}</h1>
                 <PostDate>{formatedDate}</PostDate>
                 <p>Categorías: {formatTaxonomy(categories)}</p>

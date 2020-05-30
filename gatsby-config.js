@@ -17,31 +17,33 @@ module.exports = {
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         {
-            resolve: 'gatsby-source-wordpress',
+            resolve: 'gatsby-source-wordpress-experimental',
             options: {
-                baseUrl: 'data.uxmexico.org',
-                protocol: 'https',
-                hostingWPCOM: false,
-                useACF: true,
-                includedRoutes: [
-                    '**/posts',
-                    '**/pages',
-                    '**/events',
-                    '**/media',
-                    '**/categories',
-                    '**/taxonomies',
-                    '**/tags',
-                    '**/users',
-                ],
-                plugins: [
-                    {
-                        resolve: `gatsby-wordpress-inline-images`,
-                        options: {
-                            baseUrl: `data.uxmexico.org`,
-                            protocol: `https`,
-                        },
-                    },
-                ],
+                url: 'https://data.uxmexico.org/graphql',
+                schema: {
+                    queryDepth: 5,
+                    typePrefix: `Wp`,
+                    timeout: 30000,
+                },
+                develop: {
+                    nodeUpdateInterval: 3000,
+                    hardCacheMediaFiles: false,
+                },
+                production: {
+                    hardCacheMediaFiles: false,
+                },
+                html: {
+                    // this causes the source plugin to find/replace images in html
+                    useGatsbyImage: true,
+                    // this adds a limit to the max width an image can be
+                    // if the image selected in WP is smaller, or the image is smaller than this
+                    // those values will be used instead.
+                    imageMaxWidth: null,
+                    // if a max width can't be inferred from html, this value will be passed to Sharp
+                    // if the image is smaller than this, the images width will be used instead
+                    fallbackImageMaxWidth: 100,
+                    imageQuality: 90,
+                },
             },
         },
         {

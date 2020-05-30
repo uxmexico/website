@@ -12,29 +12,26 @@ import Pagination from '../components/Pagination';
 
 export const eventsListQuery = graphql`
     query EventsListing($skip: Int!, $limit: Int!) {
-        allWordpressWpEvents(
+        allWpEvent(
             filter: { status: { eq: "publish" } }
-            sort: { fields: acf___date, order: ASC }
+            sort: { fields: eventmeta___date, order: ASC }
             limit: $limit
             skip: $skip
         ) {
-            edges {
-                node {
-                    id
-                    title
-                    slug
-                    excerpt
-                    acf {
-                        date
-                        eventbrite_url
-                    }
-                    featured_media {
-                        localFile {
-                            childImageSharp {
-                                fluid(maxWidth: 1200) {
-                                    ...GatsbyImageSharpFluid
-                                    presentationWidth
-                                }
+            nodes {
+                id
+                title
+                slug
+                excerpt
+                eventmeta {
+                    date
+                }
+                featuredImage {
+                    localFile {
+                        childImageSharp {
+                            fluid(maxWidth: 1200) {
+                                ...GatsbyImageSharpFluid
+                                presentationWidth
                             }
                         }
                     }
@@ -68,15 +65,15 @@ const EventsList = ({ data, pageContext }) => {
             <Container>
                 <h1>Próximos Eventos</h1>
 
-                {data.allWordpressWpEvents.edges.map(({ node }) => {
+                {data.allWpEvent.nodes.map((event) => {
                     const {
                         id,
                         title,
                         slug,
                         excerpt,
-                        acf: { date: eventDate },
-                        featured_media,
-                    } = node;
+                        eventmeta: { date: eventDate },
+                        featuredImage,
+                    } = event;
 
                     const formatedDate = format(
                         parse(eventDate, 'MM/dd/yyyy', new Date()),
@@ -86,10 +83,10 @@ const EventsList = ({ data, pageContext }) => {
 
                     return (
                         <Event key={id}>
-                            {featured_media && (
+                            {featuredImage && (
                                 <Img
                                     fluid={
-                                        featured_media.localFile.childImageSharp
+                                        featuredImage.localFile.childImageSharp
                                             .fluid
                                     }
                                     alt={title}
