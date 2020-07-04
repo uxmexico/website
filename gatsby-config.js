@@ -44,11 +44,6 @@ module.exports = {
                     fallbackImageMaxWidth: 100,
                     imageQuality: 90,
                 },
-                type: {
-                    MediaItem: {
-                        lazyNodes: true,
-                    },
-                },
             },
         },
         {

@@ -58,7 +58,7 @@ const MainHome = ({ event }) => {
         <MainEventContainer>
             {featuredImage && (
                 <Img
-                    fluid={featuredImage.localFile.childImageSharp.fluid}
+                    fluid={featuredImage.node.localFile.childImageSharp.fluid}
                     alt={title}
                 />
             )}

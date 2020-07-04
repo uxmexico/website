@@ -20,11 +20,13 @@ export const eventQuery = graphql`
                 eventbriteUrl
             }
             featuredImage {
-                localFile {
-                    childImageSharp {
-                        fluid(maxWidth: 1200) {
-                            ...GatsbyImageSharpFluid
-                            presentationWidth
+                node {
+                    localFile {
+                        childImageSharp {
+                            fluid(maxWidth: 1200) {
+                                ...GatsbyImageSharpFluid
+                                presentationWidth
+                            }
                         }
                     }
                 }
@@ -65,7 +67,7 @@ const Event = ({ data }) => {
             <EventContainer>
                 {featuredImage && (
                     <Img
-                        fluid={featuredImage.localFile.childImageSharp.fluid}
+                        fluid={featuredImage.node.localFile.childImageSharp.fluid}
                         alt={title}
                     />
                 )}

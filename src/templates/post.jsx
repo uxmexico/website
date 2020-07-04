@@ -16,8 +16,10 @@ export const postQuery = graphql`
             content
             date(formatString: "YYYY-MM-DD HH:mm:ss ZZ")
             author {
-                name
-                slug
+                node {
+                    name
+                    slug
+                }
             }
             categories {
                 nodes {
@@ -54,12 +56,8 @@ const Post = ({ data }) => {
         title,
         content,
         date: postDate,
-        categories: {
-            nodes: categories
-        },
-        tags: {
-            nodes: tags
-        },
+        categories: { nodes: categories },
+        tags: { nodes: tags },
     } = data.wpPost;
 
     const formatedDate = format(

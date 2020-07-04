@@ -92,7 +92,7 @@ const makeBlogPages = async ({ actions, graphql }) => {
     const postsListTemplate = path.resolve('src/templates/postsList.jsx');
 
     const { errors, data } = await graphql(`
-        query AllPages {
+        query AllPosts {
             allWpPost(filter: { status: { eq: "publish" } }) {
                 nodes {
                     slug

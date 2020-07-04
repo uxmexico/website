@@ -24,11 +24,13 @@ const IndexPage = () => {
                         eventbriteUrl
                     }
                     featuredImage {
-                        localFile {
-                            childImageSharp {
-                                fluid(maxWidth: 1200) {
-                                    ...GatsbyImageSharpFluid
-                                    presentationWidth
+                        node {
+                            localFile {
+                                childImageSharp {
+                                    fluid(maxWidth: 1200) {
+                                        ...GatsbyImageSharpFluid
+                                        presentationWidth
+                                    }
                                 }
                             }
                         }

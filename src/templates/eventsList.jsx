@@ -27,11 +27,13 @@ export const eventsListQuery = graphql`
                     date
                 }
                 featuredImage {
-                    localFile {
-                        childImageSharp {
-                            fluid(maxWidth: 1200) {
-                                ...GatsbyImageSharpFluid
-                                presentationWidth
+                    node {
+                        localFile {
+                            childImageSharp {
+                                fluid(maxWidth: 1200) {
+                                    ...GatsbyImageSharpFluid
+                                    presentationWidth
+                                }
                             }
                         }
                     }
@@ -86,7 +88,7 @@ const EventsList = ({ data, pageContext }) => {
                             {featuredImage && (
                                 <Img
                                     fluid={
-                                        featuredImage.localFile.childImageSharp
+                                        featuredImage.node.localFile.childImageSharp
                                             .fluid
                                     }
                                     alt={title}

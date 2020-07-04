@@ -32,16 +32,16 @@ const NextEvents = ({ events }) => {
                 const {
                     id,
                     title,
-                    slug,
+                    // slug,
                     excerpt,
                     eventmeta: { date: eventDate },
                 } = event;
 
-                const formatedDate = format(
-                    parse(eventDate, 'MM/dd/yyyy', new Date()),
-                    'dd MMM',
-                    { locale: es },
-                );
+                // const formatedDate = format(
+                //     parse(eventDate, 'MM/dd/yyyy', new Date()),
+                //     'dd MMM',
+                //     { locale: es },
+                // );
 
                 return (
                     <Event key={id}>
