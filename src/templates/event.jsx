@@ -10,8 +10,8 @@ import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 
 export const eventQuery = graphql`
-    query EventQuery($slug: String!) {
-        wpEvent(status: { eq: "publish" }, slug: { eq: $slug }) {
+    query EventQuery($id: String!) {
+        wpEvent(status: { eq: "publish" }, id: { eq: $id }) {
             title
             content
             eventmeta {

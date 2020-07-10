@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import ReactHtmlParser from 'react-html-parser';
 import { graphql } from 'gatsby';
@@ -9,8 +10,8 @@ import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 
 export const postQuery = graphql`
-    query PostQuery($slug: String!) {
-        wpPost(slug: { eq: $slug }, status: { eq: "publish" }) {
+    query PostQuery($id: String!) {
+        wpPost(id: { eq: $id }, status: { eq: "publish" }) {
             title
             slug
             content
@@ -23,14 +24,16 @@ export const postQuery = graphql`
             }
             categories {
                 nodes {
-                    slug
+                    id
                     name
+                    uri
                 }
             }
             tags {
                 nodes {
-                    slug
+                    id
                     name
+                    uri
                 }
             }
         }
@@ -48,8 +51,9 @@ const PostDate = styled.p`
     font-size: 0.9rem;
 `;
 
-const formatTaxonomy = (taxonomies, field = 'name') =>
-    taxonomies.reduce((acc, item) => [...acc, item[field]], []).join(', ');
+const TaxonomyLink = styled(Link)`
+    margin: 5px;
+`;
 
 const Post = ({ data }) => {
     const {
@@ -73,8 +77,26 @@ const Post = ({ data }) => {
             <PostContainer>
                 <h1>{title}</h1>
                 <PostDate>{formatedDate}</PostDate>
-                <p>Categorías: {formatTaxonomy(categories)}</p>
-                <p>Tags: {formatTaxonomy(tags)}</p>
+                {categories.length > 0 && (
+                    <p>
+                        Categorías:{' '}
+                        {categories.map((category) => (
+                            <TaxonomyLink key={category.id} to={category.uri}>
+                                {category.name}
+                            </TaxonomyLink>
+                        ))}
+                    </p>
+                )}
+                {tags.length > 0 && (
+                    <p>
+                        Tags:{' '}
+                        {tags.map((tag) => (
+                            <TaxonomyLink key={tag.id} to={tag.uri}>
+                                {tag.name}
+                            </TaxonomyLink>
+                        ))}
+                    </p>
+                )}
                 {ReactHtmlParser(content)}
             </PostContainer>
         </Layout>

@@ -10,17 +10,17 @@ import Layout from '../components/Layout';
 import Pagination from '../components/Pagination';
 
 export const postsListQuery = graphql`
-    query PostsListing($skip: Int!, $limit: Int!) {
+    query PostsArchive($skip: Int!, $limit: Int!) {
         allWpPost(
             filter: { status: { eq: "publish" } }
-            sort: { fields: date, order: ASC }
+            sort: { fields: date, order: DESC }
             limit: $limit
             skip: $skip
         ) {
             nodes {
                 id
                 title
-                slug
+                uri
                 date(formatString: "YYYY-MM-DD HH:mm:ss ZZ")
                 excerpt
             }
@@ -34,7 +34,7 @@ const Container = styled.section`
 
 const Post = styled.article``;
 
-const PostList = ({ data, pageContext }) => {
+const PostsArchive = ({ data, pageContext }) => {
     const { pageCount, currentPageNum } = pageContext;
 
     return (
@@ -43,7 +43,7 @@ const PostList = ({ data, pageContext }) => {
 
             <Container>
                 {data.allWpPost.nodes.map((post) => {
-                    const { id, title, date: postDate, slug, excerpt } = post;
+                    const { id, title, date: postDate, uri, excerpt } = post;
 
                     const formatedDate = format(
                         parse(postDate, 'yyyy-MM-dd HH:mm:ss XX', new Date()),
@@ -54,7 +54,7 @@ const PostList = ({ data, pageContext }) => {
                     return (
                         <Post key={id}>
                             <h2>
-                                <Link to={`/blog/${slug}`}>{title}</Link>
+                                <Link to={uri}>{title}</Link>
                             </h2>
                             <p>{formatedDate}</p>
 
@@ -65,7 +65,7 @@ const PostList = ({ data, pageContext }) => {
             </Container>
 
             <Pagination
-                basePath="/events/"
+                basePath="/blog/"
                 totalPages={pageCount}
                 currentPage={currentPageNum}
             />
@@ -73,4 +73,4 @@ const PostList = ({ data, pageContext }) => {
     );
 };
 
-export default PostList;
+export default PostsArchive;

@@ -4,7 +4,7 @@ const lightTheme = {
         text: 'Roboto',
     },
     colors: {
-        background: '#fff',
+        background: '#fafcf7',
         text: '#212529',
         link: '#ff1ac2',
     },

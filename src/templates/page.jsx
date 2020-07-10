@@ -7,8 +7,8 @@ import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 
 export const eventgQuery = graphql`
-    query PageQuery($slug: String!) {
-        wpPage(slug: { eq: $slug }, status: { eq: "publish" }) {
+    query PageQuery($id: String!) {
+        wpPage(id: { eq: $id }, status: { eq: "publish" }) {
             title
             content
         }

@@ -5,7 +5,6 @@ import { faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const FooterComponent = styled.footer`
     text-align: center;
-    background-image: radial-gradient(circle at 50% 0, #f8f8f8, #ffffff 91%);
 `;
 
 const SocialList = styled.ul`

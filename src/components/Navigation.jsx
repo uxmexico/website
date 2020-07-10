@@ -138,11 +138,6 @@ const Navigation = () => {
             </ToggleMenuButton>
             <NavList>
                 <NavListItem>
-                    <NavLink to="/" activeClassName="current">
-                        Home
-                    </NavLink>
-                </NavListItem>
-                <NavListItem>
                     <NavLink
                         to="/events"
                         activeClassName="current"

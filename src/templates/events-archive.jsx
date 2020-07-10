@@ -21,7 +21,7 @@ export const eventsListQuery = graphql`
             nodes {
                 id
                 title
-                slug
+                uri
                 excerpt
                 eventmeta {
                     date
@@ -71,7 +71,7 @@ const EventsList = ({ data, pageContext }) => {
                     const {
                         id,
                         title,
-                        slug,
+                        uri,
                         excerpt,
                         eventmeta: { date: eventDate },
                         featuredImage,
@@ -96,7 +96,7 @@ const EventsList = ({ data, pageContext }) => {
                             )}
                             <div>
                                 <h2>
-                                    <Link to={`/events/${slug}`}>{title}</Link>
+                                    <Link to={uri}>{title}</Link>
                                 </h2>
                                 <EventDate>{formatedDate}</EventDate>
                                 {ReactHtmlParser(excerpt)}

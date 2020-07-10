@@ -7,13 +7,14 @@ const makeEvents = async ({ graphql, actions }) => {
     const { createPage } = actions;
 
     const eventTemplate = path.resolve('src/templates/event.jsx');
-    const eventsListTemplate = path.resolve('src/templates/eventsList.jsx');
+    const eventsListTemplate = path.resolve('src/templates/events-archive.jsx');
 
     const { errors, data } = await graphql(`
         query AllEvents {
             allWpEvent(filter: { status: { eq: "publish" } }) {
                 nodes {
-                    slug
+                    id
+                    uri
                 }
             }
         }
@@ -44,10 +45,10 @@ const makeEvents = async ({ graphql, actions }) => {
     // And create page for each single event.
     events.forEach((event) => {
         createPage({
-            path: `/events/${event.slug}`,
+            path: event.uri,
             component: eventTemplate,
             context: {
-                slug: event.slug,
+                id: event.id,
             },
         });
     });
@@ -62,7 +63,8 @@ const makeStaticPages = async ({ actions, graphql }) => {
         query AllPages {
             allWpPage(filter: { status: { eq: "publish" } }) {
                 nodes {
-                    slug
+                    id
+                    uri
                 }
             }
         }
@@ -76,10 +78,10 @@ const makeStaticPages = async ({ actions, graphql }) => {
 
     pages.forEach((page) => {
         createPage({
-            path: `/${page.slug}`,
+            path: page.uri,
             component: pageTemplate,
             context: {
-                slug: page.slug,
+                id: page.id,
             },
         });
     });
@@ -89,13 +91,14 @@ const makeBlogPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
 
     const postTemplate = path.resolve('src/templates/post.jsx');
-    const postsListTemplate = path.resolve('src/templates/postsList.jsx');
+    const postsListTemplate = path.resolve('src/templates/posts-archive.jsx');
 
     const { errors, data } = await graphql(`
         query AllPosts {
             allWpPost(filter: { status: { eq: "publish" } }) {
                 nodes {
-                    slug
+                    id
+                    uri
                 }
             }
         }
@@ -126,11 +129,110 @@ const makeBlogPages = async ({ actions, graphql }) => {
     // And create page for each single post.
     posts.forEach((post) => {
         createPage({
-            path: `/blog/${post.slug}`,
+            path: post.uri,
             component: postTemplate,
             context: {
-                slug: post.slug,
+                id: post.id,
             },
+        });
+    });
+};
+
+const makeCategoriesAndTagsPages = async ({ actions, graphql }) => {
+    const { createPage } = actions;
+
+    const categoriesTemplate = path.resolve(
+        'src/templates/categories-archive.jsx',
+    );
+    const tagsTemplate = path.resolve(
+        'src/templates/tags-archive.jsx',
+    );
+
+    const { errors, data } = await graphql(`
+        query allCategoriesAndTagsQuery {
+            allWpCategory {
+                nodes {
+                    id
+                    name
+                    slug
+                    uri
+                    posts {
+                        nodes {
+                            id
+                        }
+                    }
+                }
+            }
+            allWpTag {
+                nodes {
+                    id
+                    name
+                    slug
+                    uri
+                    posts {
+                        nodes {
+                            id
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
+    if (errors) {
+        throw new Error(errors);
+    }
+
+    const categories = data.allWpCategory.nodes;
+    const tags = data.allWpTag.nodes;
+
+    categories.map((category) => {
+        const pageCount = Math.ceil(
+            category.posts.nodes.length / POSTS_PER_PAGE,
+        );
+
+        [...Array(pageCount)].forEach((_val, pageNum) => {
+            createPage({
+                path:
+                    pageNum === 0
+                        ? `/category/${category.slug}/`
+                        : `/category/${category.slug}/page-${pageNum + 1}/`,
+                component: categoriesTemplate,
+                context: {
+                    limit: POSTS_PER_PAGE,
+                    skip: pageNum * POSTS_PER_PAGE,
+                    pageCount,
+                    currentPageNum: pageNum + 1,
+                    categoryId: category.id,
+                    categoryName: category.name,
+                    categorySlug: category.slug,
+                },
+            });
+        });
+    });
+
+    tags.map((tag) => {
+        const pageCount = Math.ceil(
+            tag.posts.nodes.length / POSTS_PER_PAGE,
+        );
+
+        [...Array(pageCount)].forEach((_val, pageNum) => {
+            createPage({
+                path:
+                    pageNum === 0
+                        ? `/tag/${tag.slug}/`
+                        : `/tag/${tag.slug}/page-${pageNum + 1}/`,
+                component: tagsTemplate,
+                context: {
+                    limit: POSTS_PER_PAGE,
+                    skip: pageNum * POSTS_PER_PAGE,
+                    pageCount,
+                    currentPageNum: pageNum + 1,
+                    tagId: tag.id,
+                    tagName: tag.name,
+                    tagSlug: tag.slug,
+                },
+            });
         });
     });
 };
@@ -140,5 +242,6 @@ exports.createPages = async ({ actions, graphql }) => {
         makeEvents({ actions, graphql }),
         makeStaticPages({ actions, graphql }),
         makeBlogPages({ actions, graphql }),
+        makeCategoriesAndTagsPages({ actions, graphql }),
     ]);
 };
