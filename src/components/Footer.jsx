@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faTwitterSquare, faFacebookSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const FooterComponent = styled.footer`
     text-align: center;
+    background: #f8f8f8;
+    padding: 40px 40px 20px;
 `;
 
 const SocialList = styled.ul`
@@ -22,19 +24,30 @@ const SocialItem = styled.li`
 
 const Footer = () => (
     <FooterComponent>
-        <h3>Siguenos en</h3>
+        <h2 className="socialFooter">Síguenos en</h2>
         <SocialList>
-            <SocialItem>
-                <a href="https://twitter.com/UXMexico" title="Twitter">
-                    <FontAwesomeIcon icon={faTwitter} />
+        <SocialItem>
+                <a className="socialLink" href="https://www.linkedin.com/company/ux-m%C3%A9xico/" title="Linkedin">
+                    <FontAwesomeIcon icon={faLinkedin} />
                 </a>
             </SocialItem>
             <SocialItem>
-                <a href="https://www.facebook.com/UXMexico" title="Facebook">
-                    <FontAwesomeIcon icon={faFacebook} />
+                <a className="socialLink" href="https://twitter.com/UXMexico" title="Twitter">
+                    <FontAwesomeIcon icon={faTwitterSquare} />
+                </a>
+            </SocialItem>
+            <SocialItem>
+                <a className="socialLink" href="https://www.facebook.com/UXMexico" title="Facebook">
+                    <FontAwesomeIcon icon={faFacebookSquare} />
                 </a>
             </SocialItem>
         </SocialList>
+        <div className="rowFooterTop">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+        </div>
+        <div className="rowFooterBottom">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
     </FooterComponent>
 );
 

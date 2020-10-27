@@ -3,12 +3,12 @@ import styled from '@emotion/styled';
 import { useStaticQuery, graphql } from 'gatsby';
 
 const Img = styled.img`
-    height: 30px;
+    height: 25px;
     display: inline-block;
-    margin-bottom: 0;
+    margin: 5px 0 0;
 `;
 
-const Logo = () => {
+const Close = ({onClick}) => {
     const data = useStaticQuery(graphql`
         query {
             site {
@@ -17,18 +17,17 @@ const Logo = () => {
                 }
             }
 
-            placeholderImage: file(relativePath: { eq: "logo-uxmexico.svg" }) {
+            placeholderImage: file(relativePath: { eq: "close.svg" }) {
                 publicURL
             }
         }
     `);
 
     return (
-        <Img
+        <Img onClick={onClick}
             src={data.placeholderImage.publicURL}
-            alt={data.site.siteMetadata.title}
         />
     );
 };
 
-export default Logo;
+export default Close;

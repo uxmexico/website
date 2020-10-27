@@ -1,0 +1,69 @@
+@import "./variables.scss";
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('/src/fonts/SFProDisplay-Regular.ttf') format('ttf');
+    font-style: normal;
+}
+button {
+    margin: auto !important;
+    display: block;
+    width: auto;
+    color: #fff;
+    padding: 10px 30px;
+    border: 0;
+    border-radius: 20px;
+    box-shadow: 0 8px 12px 0 rgba(255, 26, 194, 0.16);
+    background-image: linear-gradient(100deg, #ff1ac2, #ff1573);
+}
+.demo {
+    color: red;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+.rowMobile {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 16px 24px;
+}
+.itemsNav {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px 24px 0;
+    @media only screen and (max-width: $break-isMobile) {
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+}
+.dateFormat {
+    p {
+        font-size: 12px;
+    }
+}
+h2 {
+    &.socialFooter {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+}
+.socialLink {
+    color: #000;
+    font-size: 24px;
+}
+.rowFooterTop {
+    margin: 0 0 70px;
+    p {
+        font-size: 16px;
+    }
+}
+.rowFooterBottom {
+    p {
+        font-size: 12px;
+        color: #999999;
+        line-height: 16px;
+        text-align: center;
+    }
+}
