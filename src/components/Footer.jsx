@@ -26,7 +26,7 @@ const Footer = () => (
     <FooterComponent>
         <h2 className="socialFooter">Síguenos en</h2>
         <SocialList>
-        <SocialItem>
+            <SocialItem>
                 <a className="socialLink" href="https://www.linkedin.com/company/ux-m%C3%A9xico/" title="Linkedin">
                     <FontAwesomeIcon icon={faLinkedin} />
                 </a>

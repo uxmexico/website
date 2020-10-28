@@ -70,8 +70,6 @@ const MainHome = ({ event }) => {
             </div>
             <CTAButton>¡Quiero asistir!</CTAButton>
         </MainEventContainer>
-
-        
     );
 };
 

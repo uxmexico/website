@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import Navigation from './Navigation';
+import ListEvents from './ListEvents';
 import Footer from './Footer';
 
 const Container = styled.div`
@@ -41,6 +42,7 @@ const Layout = ({ children }) => {
             <Container>
                 <Navigation />
                 <Main>{children}</Main>
+                <ListEvents />
                 <Footer />
             </Container>
         </ThemeProvider>
