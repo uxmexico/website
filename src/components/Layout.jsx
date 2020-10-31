@@ -11,6 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navigation from './Navigation';
 import ListEvents from './ListEvents';
+import LastArticles from './LastArticles';
+import Vacancies from './Vacancies'
 import Footer from './Footer';
 
 const Container = styled.div`
@@ -43,6 +45,8 @@ const Layout = ({ children }) => {
                 <Navigation />
                 <Main>{children}</Main>
                 <ListEvents />
+                <LastArticles />
+                <Vacancies />
                 <Footer />
             </Container>
         </ThemeProvider>
