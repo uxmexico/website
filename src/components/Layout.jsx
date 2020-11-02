@@ -6,12 +6,18 @@ import { ThemeProvider } from 'emotion-theming';
 
 import theme from '../styles/theme';
 import mainStyles from '../styles/global';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import Navigation from './Navigation';
+import ListEvents from './ListEvents';
+import LastArticles from './LastArticles';
+import Vacancies from './Vacancies'
+import Members from './Members';
 import Footer from './Footer';
 
 const Container = styled.div`
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-flow: row wrap;
@@ -26,7 +32,7 @@ const Main = styled.main`
 
     ${props => props.theme.breakpoints.desktop} {
         margin-top: 10px;
-        padding: 0 1rem;
+        padding: 0;
     }
 `;
 
@@ -39,6 +45,10 @@ const Layout = ({ children }) => {
             <Container>
                 <Navigation />
                 <Main>{children}</Main>
+                <ListEvents />
+                <LastArticles />
+                <Vacancies />
+                <Members />
                 <Footer />
             </Container>
         </ThemeProvider>

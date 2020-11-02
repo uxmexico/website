@@ -1,31 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { Link } from 'gatsby';
-import MenuMobile from './MenuMobile';
 
 import Logo from './images/Logo';
-import Menu from './images/Menu';
+import Close from './images/Close';
+import SocialNetworks from './SocialNetworks';
 
-const Nav = styled.nav`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
 
-    ${props => props.theme.breakpoints.desktop} {
-        align-items: flex-end;
-        padding: 0 1rem;
-    }
-`;
 
 const NavListItem = styled.li`
     margin: 0;
-    padding: 0;
+    padding: 0 24px;
     width: 100%;
-    text-align: center;
+    text-align: left;
 
     ${props => props.theme.breakpoints.desktop} {
         width: auto;
@@ -39,10 +27,23 @@ const NavLink = styled(Link)`
     padding: 5px 0;
     color: ${props => props.theme.colors.text};
     width: 100%;
+    font-size: 18px;
+    font-weight: 600;
 
     &:hover {
-        text-decoration: underline;
+        &:after {
+            content: "-";
+            color: #ff1ac2;
+            font-size: 40px;
+            line-height: 20px;
+            width: 20px;
+            height: 1px;
+            padding: 0 5px;
+            position: absolute;
+        }
     }
+
+    
 
     ${props => props.theme.breakpoints.desktop} {
         padding: 0 15px;
@@ -58,20 +59,26 @@ const LogoText = styled.span`
     padding: 0 8px;
 `;
 
-const Navigation = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
+const MenuMobile = ({onClose, className}) => {
 
-    const _toggleMenu = () => setMenuOpen(!menuOpen);
 
-    const _hideMenu = () => {
-        console.log("Cerrando")
-        setMenuOpen(false);
-    }
+    const Nav = styled.nav`
 
+        background: white;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 3000;
+        top: 0;
+        left: 0;
+
+        ${props => props.theme.breakpoints.desktop} {
+            display: none;
+        }
+    `;
 
     const NavList = styled.ul`
         list-style: none;
-        display: ${menuOpen ? 'flex' : 'none'};
         flex-wrap: wrap;
         align-items: center;
         margin: 0;
@@ -100,17 +107,10 @@ const Navigation = () => {
             }
         }
     `;
-    const MenuMobileStyled = styled(MenuMobile)`
-        display: ${menuOpen ? 'block' : 'none'};
-        
-        ${props => props.theme.breakpoints.desktop} {
-            display: none;
-        }
-    `
+
     return (
-        <Nav>
-            <MenuMobileStyled onClose={_hideMenu}/>
-            <div className="itemsNav">
+        <Nav className={className}>
+            <div className="rowMobile">
                 <Link
                     to="/"
                     css={theme => css`
@@ -127,6 +127,7 @@ const Navigation = () => {
                         flex-grow: 1;
                         display: flex;
                         align-items: baseline;
+
                         ${theme.breakpoints.desktop} {
                             display: flex;
                             align-items: baseline;
@@ -138,40 +139,39 @@ const Navigation = () => {
                     <Logo />
                     <LogoText>México</LogoText>
                 </Link>
-                
-                <Menu onClick={_toggleMenu}/>
-                <NavList>
-                    <NavListItem>
-                        <NavLink
-                            to="/events"
-                            activeClassName="current"
-                            partiallyActive
-                        >
-                            Eventos
-                        </NavLink>
-                    </NavListItem>
-                    <NavListItem>
-                        <NavLink
-                            to="/blog"
-                            activeClassName="current"
-                            partiallyActive
-                        >
-                            Blog
-                        </NavLink>
-                    </NavListItem>
-                    <NavListItem>
-                        <NavLink
-                            to="/about"
-                            activeClassName="current"
-                            partiallyActive
-                        >
-                            Nosotros
-                        </NavLink>
-                    </NavListItem>
-                </NavList>
+                <Close onClick={onClose}/>
             </div>
+            <NavList>
+                <NavListItem>
+                    <NavLink
+                        to="/events"
+                        activeClassName="current"
+                        partiallyActive
+                    >
+                        Eventos
+                    </NavLink>
+                </NavListItem>
+                <NavListItem>
+                    <NavLink
+                        to="/blog"
+                        activeClassName="current"
+                        partiallyActive
+                    >
+                        Blog
+                    </NavLink>
+                </NavListItem>
+                <NavListItem>
+                    <NavLink
+                        to="/about"
+                        activeClassName="current"
+                        partiallyActive
+                    >
+                        Nosotros
+                    </NavLink>
+                </NavListItem>
+            </NavList>            
         </Nav>
     );
 };
 
-export default Navigation;
+export default MenuMobile;

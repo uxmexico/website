@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Img from 'gatsby-image';
 import ReactHtmlParser from 'react-html-parser';
-import { Link } from 'gatsby';
 import { format, parse } from 'date-fns';
 import { es } from 'date-fns/locale';
 
@@ -13,31 +12,31 @@ const MainEventContainer = styled.section`
 
 const Title = styled.h2`
     text-align: center;
+    font-size: 24px;
+`;
+
+const Link = styled.a`
+    color: #000;
 `;
 
 const Description = styled.section`
     padding: 0 20px;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: props.font-size;
+    line-height: 24px;
 `;
 
 const EventDate = styled.p`
     color: #999;
     text-align: center;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 12px;
 `;
 
 const CTAButton = styled.button`
-    margin: 0 auto;
-    display: block;
-    width: auto;
-    color: #fff;
-    padding: 10px 30px;
-    border: 0;
-    border-radius: 20px;
-    box-shadow: 0 8px 12px 0 rgba(255, 26, 194, 0.16);
-    background-image: linear-gradient(100deg, #ff1ac2, #ff1573);
+    border-radius: 50px;
+    width: 220px;
+    font-size: 16px;
 `;
 
 const MainHome = ({ event }) => {
@@ -65,8 +64,10 @@ const MainHome = ({ event }) => {
             <Title>
                 <Link to={`/events/${slug}`}>{title}</Link>
             </Title>
-            <Description>{ReactHtmlParser(excerpt)}</Description>
-            <EventDate>{formatedDate}</EventDate>
+            <Description font-size="16px">{ReactHtmlParser(excerpt)}</Description>
+            <div className="dateFormat">
+                <EventDate>{formatedDate}</EventDate>
+            </div>
             <CTAButton>¡Quiero asistir!</CTAButton>
         </MainEventContainer>
     );
