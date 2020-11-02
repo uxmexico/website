@@ -25,7 +25,7 @@ const LastArticles = () => (
                 </div>
                 <div className="card__info">
                     <div>
-                        <a className="card__link" href="./">View article</a>
+                        <a className="card__link" href="./">Leer más</a>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@ const LastArticles = () => (
                 </div>
                 <div className="card__info">
                     <div>
-                        <a className="card__link" href="./">View article</a>
+                        <a className="card__link" href="./">Leer más</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@ const LastArticles = () => (
                 </div>
                 <div className="card__info">
                     <div>
-                        <a className="card__link" href="./">View article</a>
+                        <a className="card__link" href="./">Leer más</a>
                     </div>
                 </div>
             </div>
@@ -61,10 +61,11 @@ const LastArticles = () => (
                 </div>
                 <div className="card__info">
                     <div>
-                        <a className="card__link" href="./">View article</a>
+                        <a className="card__link" href="./">Leer más</a>
                     </div>
                 </div>
             </div>
+
         </div>
     </ArticlesContainer>
 );

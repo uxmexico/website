@@ -194,7 +194,8 @@ a.showAllEvents {
   }
   
   .hs {
-    display: grid;
+    display: flex;
+    justify-content: center;
     grid-gap: 24px;
     grid-template-columns: 10px;
     grid-template-rows: minmax(240px, 1fr);
@@ -232,8 +233,8 @@ a.showAllEvents {
     overflow-y: scroll;
   }
   
-  .hs > li,
-  .item {
+.hs > li,
+.item {
     scroll-snap-align: center;
     padding: calc(20px / 2 * 1.5);
     display: flex;
@@ -242,7 +243,18 @@ a.showAllEvents {
     align-items: center;
     background: #fff;
     border-radius: 8px;
-  }
+    &:first-child {
+        @media only screen and (max-width: $break-isMobile) {
+            margin-left: 450px;
+        }
+    }
+    &:last-child {
+        @media only screen and (max-width: $break-isMobile) {
+            margin-left: 450px;
+        }
+    }
+}
+
   
   
   
@@ -250,6 +262,9 @@ a.showAllEvents {
     scrollbar-width: none;
     margin-bottom: 0;
     padding-bottom: 0;
+    @media only screen and (max-width: $break-isMobile) {
+        margin-left: 0;
+    }
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -271,6 +286,8 @@ a.showAllEvents {
 .cardx {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
+    width: 95%;
+    margin: auto;
 }
 
 .card__image {
@@ -339,3 +356,25 @@ a.showAllEvents {
     font-size: 30px;
     margin: 0 auto 25px;
 }
+
+// Cards members start //
+.grid-mm {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+    width: 80%;
+    margin: auto;
+    @media only screen and (max-width: 767px) {
+        display: flex;
+        width: 100%;
+        max-width: 375px;
+        overflow-x: scroll;
+        grid-gap: 0;
+    }
+}
+  
+.grid-mm > * { 
+    padding: 2rem;
+    text-align: center;
+}
+// End Cards members //
