@@ -41,6 +41,18 @@ export const postQuery = graphql`
                     uri
                 }
             }
+            featuredImage {
+                node {
+                    localFile {
+                        childImageSharp {
+                            fluid(maxWidth: 1800) {
+                                ...GatsbyImageSharpFluid
+                                presentationWidth
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 `;
@@ -178,10 +190,17 @@ const SendButton = styled.button`
         outline: 0;
     }   
 `
+const FeaturedImage = styled.div`
+    & div {
+        height: 450px;
+    }
+`
+
 const Post = ({ data }) => {
     const {
         featuredImage,
         title,
+        author,
         content,
         date: postDate,
         categories: { nodes: categories },
@@ -203,13 +222,15 @@ const Post = ({ data }) => {
                 />
             </ContainerProgressBar>
             <SEO title={`Blog - ${title}`} />
-            <PostContainer>
+            <FeaturedImage>
                 {featuredImage && (
                     <Img
                         fluid={featuredImage.node.localFile.childImageSharp.fluid}
                         alt={title}
                     />
                 )}
+            </FeaturedImage>
+            <PostContainer>
                 <TitlePost>{title}</TitlePost>
                 <PostDate>{formatedDate}</PostDate>
                 {categories.length > 0 && (

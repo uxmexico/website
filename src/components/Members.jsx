@@ -55,19 +55,10 @@ const SocialItem = styled.li`
     margin: 0 0.5rem;
 `;
 
-const MemberCardAlt = styled.div`
-    width: 375px;
-    background: #dbd0bc;
-    overflow-y: scroll;
-    padding: 10px 0;
-
-    ${(props) => props.theme.breakpoints.desktop} {
-        width: 100%;
-    }
-`;
 const MemberInfo = styled.article`
     display: flex;
     justify-content: center;
+    align-items: baseline;
 `;
 const Members = () => {
     const data = useStaticQuery(graphql`

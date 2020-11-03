@@ -50,6 +50,12 @@ const CTAButton = styled.button`
     }
 `;
 
+const FeaturedImage = styled.div`
+    & div {
+        height: 450px;
+    }
+`
+
 const MainHome = ({ event }) => {
     const {
         title,
@@ -66,12 +72,14 @@ const MainHome = ({ event }) => {
 
     return (
         <MainEventContainer>
-            {featuredImage && (
-                <Img
-                    fluid={featuredImage.node.localFile.childImageSharp.fluid}
-                    alt={title}
-                />
-            )}
+            <FeaturedImage>
+                {featuredImage && (
+                    <Img
+                        fluid={featuredImage.node.localFile.childImageSharp.fluid}
+                        alt={title}
+                    />
+                )}
+            </FeaturedImage>
             <Title>
                 <Link to={`/events/${slug}`}>{title}</Link>
             </Title>

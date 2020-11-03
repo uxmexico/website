@@ -289,6 +289,7 @@ a.showAllEvents {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     width: 95%;
+    height: 362px;
     margin: auto;
 }
 
@@ -305,6 +306,7 @@ a.showAllEvents {
 .card__content {
     padding: 15px;
     background: #fff;
+    min-height: 160px;
 }
 
 .card__content h1 {
@@ -381,3 +383,7 @@ a.showAllEvents {
 }
 
 // End Cards members //
+
+.gatsby-image-wrapper {
+    
+}
