@@ -26,6 +26,9 @@ const CTAButtonSecundary = styled.button`
         background: #fff;
         color: #ff1ac2;
     }
+    &:focus {
+        outline: 0;
+    }
 `
 const BoxVacancies = styled.div`
     display: flex;

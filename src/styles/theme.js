@@ -9,7 +9,7 @@ const lightTheme = {
         link: '#ff1ac2',
     },
     breakpoints: {
-        desktop: '@media all and (min-width: 960px)',
+        desktop: '@media all and (min-width: 900px)',
     },
     transition: '.5s ease',
 };

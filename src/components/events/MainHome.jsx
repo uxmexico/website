@@ -33,10 +33,21 @@ const EventDate = styled.p`
     font-size: 12px;
 `;
 
+const RowCenterButton = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 const CTAButton = styled.button`
-    border-radius: 50px;
-    width: 220px;
-    font-size: 16px;
+    color: #fff;
+    padding: 10px 30px;
+    border: 0;
+    border-radius: 20px;
+    box-shadow: 0 8px 12px 0 rgba(255, 26, 194, 0.16);
+    background-image: linear-gradient(100deg, #ff1ac2, #ff1573);
+    &:focus {
+        outline: 0;
+    }
 `;
 
 const MainHome = ({ event }) => {
@@ -68,7 +79,9 @@ const MainHome = ({ event }) => {
             <div className="dateFormat">
                 <EventDate>{formatedDate}</EventDate>
             </div>
-            <CTAButton>¡Quiero asistir!</CTAButton>
+            <RowCenterButton>
+                <CTAButton>¡Quiero asistir!</CTAButton>
+            </RowCenterButton>
         </MainEventContainer>
     );
 };
