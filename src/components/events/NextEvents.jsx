@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import ReactHtmlParser from 'react-html-parser';
-import { format, parse } from 'date-fns';
-import { es } from 'date-fns/locale';
 
 const EventsContainer = styled.section`
     padding-top: 20px;
@@ -34,7 +32,7 @@ const NextEvents = ({ events }) => {
                     title,
                     // slug,
                     excerpt,
-                    eventmeta: { date: eventDate },
+                    // eventmeta: { date: eventDate },
                 } = event;
 
                 // const formatedDate = format(
