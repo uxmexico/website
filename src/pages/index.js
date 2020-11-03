@@ -5,6 +5,10 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import MainHome from '../components/events/MainHome';
 import NextEvents from '../components/events/NextEvents';
+import ListEvents from '../components/ListEvents';
+import LastArticles from '../components/LastArticles';
+import Vacancies from '../components/Vacancies';
+import Members from '../components/Members';
 
 const IndexPage = () => {
     const events = useStaticQuery(graphql`
@@ -27,7 +31,7 @@ const IndexPage = () => {
                         node {
                             localFile {
                                 childImageSharp {
-                                    fluid(maxWidth: 1200) {
+                                    fluid(maxWidth: 1800) {
                                         ...GatsbyImageSharpFluid
                                         presentationWidth
                                     }
@@ -48,6 +52,10 @@ const IndexPage = () => {
             <SEO title="Home" />
             <MainHome event={mainEvent} />
             <NextEvents events={otherEvents} />
+            <ListEvents />
+            <LastArticles />
+            <Vacancies />
+            <Members />
         </Layout>
     );
 };
