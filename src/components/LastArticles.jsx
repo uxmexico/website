@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import { format, parse } from 'date-fns';
+import { es } from 'date-fns/locale';
 
 const ArticlesContainer = styled.section`
     background-image: radial-gradient(circle at 0 0, #f2f2f2, #ffffff 79%);
@@ -9,65 +13,82 @@ const ArticlesContainer = styled.section`
 `;
 
 const AllEvents = styled.div`
-    text-align: center; 
+    text-align: center;
 `;
 
-const LastArticles = () => (
-    <ArticlesContainer>
-        <h2 className="titleSection">Últimos artículos</h2>
+const LastArticles = () => {
+    const data = useStaticQuery(graphql`
+        query getAllPostsData {
+            allWpPost(
+                sort: { fields: date, order: DESC }
+                filter: { status: { eq: "publish" } }
+                limit: 5
+            ) {
+                nodes {
+                    id
+                    title
+                    excerpt
+                    uri
+                    featuredImage {
+                        node {
+                            localFile {
+                                childImageSharp {
+                                    fluid(maxWidth: 500) {
+                                        ...GatsbyImageSharpFluid
+                                        presentationWidth
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `);
 
-        <div className="cards">
-            <div className="cardx">
-                <img className="card__image" src="https://fakeimg.pl/400x300/009578/fff/" alt=""/>
-                <div className="card__content">
-                    <h1>Human centric design </h1>
-                    <p>Mauris eu pulvinar dui, ut semper nunc. Sed volutpat, tellus eu dictum tempus.</p>
-                </div>
-                <div className="card__info">
-                    <div>
-                        <a className="card__link" href="./">Leer más</a>
-                    </div>
-                </div>
-            </div>
-            <div className="cardx">
-                <img className="card__image" src="https://fakeimg.pl/400x300/009578/fff/" alt=""/>
-                <div className="card__content">
-                    <h1>Human centric design </h1>
-                    <p>Mauris eu pulvinar dui, ut semper nunc. Sed volutpat, tellus eu dictum tempus.</p>
-                </div>
-                <div className="card__info">
-                    <div>
-                        <a className="card__link" href="./">Leer más</a>
-                    </div>
-                </div>
-            </div>
-            <div className="cardx">
-                <img className="card__image" src="https://fakeimg.pl/400x300/009578/fff/" alt=""/>
-                <div className="card__content">
-                    <h1>Human centric design </h1>
-                    <p>Mauris eu pulvinar dui, ut semper nunc. Sed volutpat, tellus eu dictum tempus.</p>
-                </div>
-                <div className="card__info">
-                    <div>
-                        <a className="card__link" href="./">Leer más</a>
-                    </div>
-                </div>
-            </div>
-            <div className="cardx">
-                <img className="card__image" src="https://fakeimg.pl/400x300/009578/fff/" alt=""/>
-                <div className="card__content">
-                    <h1>Human centric design </h1>
-                    <p>Mauris eu pulvinar dui, ut semper nunc. Sed volutpat, tellus eu dictum tempus.</p>
-                </div>
-                <div className="card__info">
-                    <div>
-                        <a className="card__link" href="./">Leer más</a>
-                    </div>
-                </div>
-            </div>
+    return (
+        <ArticlesContainer>
+            <h2 className="titleSection">Últimos artículos</h2>
 
-        </div>
-    </ArticlesContainer>
-);
+            <div className="cards">
+                {data.allWpPost.nodes.map((post) => {
+                    console.log(post);
+
+                    return (
+                        <div key={post.id} className="cardx">
+                            {post.featuredImage ? (
+                                <Img
+                                    className="card__image"
+                                    title={post.title}
+                                    fluid={
+                                        post.featuredImage.node.localFile
+                                            .childImageSharp.fluid
+                                    }
+                                />
+                            ) : (
+                                <img
+                                    className="card__image"
+                                    src="https://fakeimg.pl/400x300/009578/fff/"
+                                    alt=""
+                                />
+                            )}
+                            <div className="card__content">
+                                <h1>{post.title}</h1>
+                                <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
+                            </div>
+                            <div className="card__info">
+                                <div>
+                                    <Link className="card__link" to={post.uri}>
+                                        Leer más
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </ArticlesContainer>
+    );
+};
 
 export default LastArticles;
