@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 import { Link } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const NavListItem = styled.li`
     margin: 0;
@@ -11,7 +10,7 @@ const NavListItem = styled.li`
     width: 100%;
     text-align: left;
 
-    ${props => props.theme.breakpoints.desktop} {
+    ${(props) => props.theme.breakpoints.desktop} {
         width: auto;
         display: block;
     }
@@ -21,14 +20,14 @@ const NavLink = styled(Link)`
     display: inline-block;
     text-decoration: none;
     padding: 5px 0;
-    color: ${props => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.text};
     width: 100%;
     font-size: 18px;
     font-weight: 600;
 
     &:hover {
         &:after {
-            content: "-";
+            content: '-';
             color: #ff1ac2;
             font-size: 40px;
             line-height: 20px;
@@ -39,27 +38,13 @@ const NavLink = styled(Link)`
         }
     }
 
-    
-
-    ${props => props.theme.breakpoints.desktop} {
+    ${(props) => props.theme.breakpoints.desktop} {
         padding: 0 15px;
     }
 `;
 
-const LogoText = styled.span`
-    display: inline-block;
-    font-size: 22px;
-    font-weight: normal;
-    line-height: 1.45;
-    color: #000000;
-    padding: 0 8px;
-`;
-
 const SocialNetworks = () => {
-
-
     const Nav = styled.nav`
-
         background: white;
         width: 100%;
         height: 100%;
@@ -68,7 +53,7 @@ const SocialNetworks = () => {
         top: 0;
         left: 0;
 
-        ${props => props.theme.breakpoints.desktop} {
+        ${(props) => props.theme.breakpoints.desktop} {
             display: none;
         }
     `;
@@ -82,7 +67,7 @@ const SocialNetworks = () => {
         width: 100%;
         order: 3;
 
-        ${props => props.theme.breakpoints.desktop} {
+        ${(props) => props.theme.breakpoints.desktop} {
             order: 2;
             width: auto;
             display: flex;
@@ -92,7 +77,7 @@ const SocialNetworks = () => {
 
         .current {
             &:after {
-                content: "-";
+                content: '-';
                 color: #ff1ac2;
                 font-size: 40px;
                 line-height: 20px;
@@ -105,7 +90,7 @@ const SocialNetworks = () => {
     `;
 
     return (
-        <Nav >
+        <Nav>
             <NavList>
                 <NavListItem>
                     <NavLink
@@ -113,10 +98,7 @@ const SocialNetworks = () => {
                         activeClassName="current"
                         partiallyActive
                     >
-                        <FontAwesomeIcon
-                            fixedWidth
-                            icon={faTimes}
-                        />
+                        <FontAwesomeIcon fixedWidth icon={faTimes} />
                     </NavLink>
                 </NavListItem>
                 <NavListItem>
@@ -125,10 +107,7 @@ const SocialNetworks = () => {
                         activeClassName="current"
                         partiallyActive
                     >
-                        <FontAwesomeIcon
-                            fixedWidth
-                            icon={faTimes}
-                        />
+                        <FontAwesomeIcon fixedWidth icon={faTimes} />
                     </NavLink>
                 </NavListItem>
                 <NavListItem>
@@ -137,10 +116,7 @@ const SocialNetworks = () => {
                         activeClassName="current"
                         partiallyActive
                     >
-                        <FontAwesomeIcon
-                            fixedWidth
-                            icon={faTimes}
-                        />
+                        <FontAwesomeIcon fixedWidth icon={faTimes} />
                     </NavLink>
                 </NavListItem>
             </NavList>
