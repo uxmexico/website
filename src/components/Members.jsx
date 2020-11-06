@@ -60,6 +60,7 @@ const MemberInfo = styled.article`
     justify-content: center;
     align-items: baseline;
 `;
+
 const Members = () => {
     const data = useStaticQuery(graphql`
         query allAuthors {
