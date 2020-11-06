@@ -8,6 +8,7 @@ import { es } from 'date-fns/locale';
 
 import SEO from '../components/SEO';
 import Layout from '../components/Layout';
+import OthersArticles from '../components/OthersArticles';
 
 import ProgressBar from "react-scroll-progress-bar";
 import Img from 'gatsby-image';
@@ -233,6 +234,8 @@ const Post = ({ data }) => {
             <PostContainer>
                 <TitlePost>{title}</TitlePost>
                 <PostDate>{formatedDate}</PostDate>
+                
+                <p>Por <a href="./">Adrian Solca</a></p>
                 {categories.length > 0 && (
                     <p>
                         Categorías:{' '}
@@ -289,7 +292,7 @@ const Post = ({ data }) => {
                 </CommentPost>
             </YouLike>
             <Line />
-
+            <OthersArticles />
         </Layout>
     );
 };
