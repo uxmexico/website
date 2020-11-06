@@ -5,7 +5,7 @@
     src: url('/src/fonts/SFProDisplay-Regular.ttf') format('ttf');
     font-style: normal;
 }
-button {
+/*button {
     margin: auto !important;
     display: block;
     width: auto;
@@ -15,7 +15,10 @@ button {
     border-radius: 20px;
     box-shadow: 0 8px 12px 0 rgba(255, 26, 194, 0.16);
     background-image: linear-gradient(100deg, #ff1ac2, #ff1573);
-}
+    &:focus {
+        outline: 0;
+    }
+}*/
 .demo {
     color: red;
     text-align: center;
@@ -170,7 +173,6 @@ a.showAllEvents {
 }
 .pinkIcon {
     color: #ff1ac2;
-    margin: 0 0 0 10px;
 }
 
 // Grid cards Ultimos articulos //
@@ -287,6 +289,7 @@ a.showAllEvents {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     width: 95%;
+    height: 362px;
     margin: auto;
 }
 
@@ -303,6 +306,7 @@ a.showAllEvents {
 .card__content {
     padding: 15px;
     background: #fff;
+    min-height: 160px;
 }
 
 .card__content h1 {
@@ -377,4 +381,9 @@ a.showAllEvents {
     padding: 2rem;
     text-align: center;
 }
+
 // End Cards members //
+
+.gatsby-image-wrapper {
+    
+}

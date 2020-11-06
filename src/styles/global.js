@@ -110,6 +110,9 @@ const global = theme => css`
         font-weight: 700;
         text-rendering: optimizeLegibility;
     }
+    p {
+        font-size: 16px;
+    }
 `;
 
 export default global;
