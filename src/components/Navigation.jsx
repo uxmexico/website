@@ -41,7 +41,7 @@ const NavLink = styled(Link)`
     width: 100%;
 
     &:hover {
-        text-decoration: underline;
+        text-decoration: none;
     }
 
     ${props => props.theme.breakpoints.desktop} {
@@ -56,6 +56,11 @@ const LogoText = styled.span`
     line-height: 1.45;
     color: #000000;
     padding: 0 8px;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
 `;
 
 const Navigation = () => {
@@ -132,6 +137,10 @@ const Navigation = () => {
                             align-items: baseline;
                             flex-grow: 0;
                             padding: 5px 0 0;
+                        }
+
+                        &:hover {
+                            text-decoration: none;
                         }
                     `}
                 >

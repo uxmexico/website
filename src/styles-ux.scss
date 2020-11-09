@@ -378,11 +378,13 @@ a.showAllEvents {
 }
   
 .grid-mm > * { 
-    padding: 2rem;
+    padding: 18px;
     text-align: center;
 }
 
 // End Cards members //
-.calse-demo {
-    
+.main {
+    &.mainPrincipal {
+        background-image: radial-gradient(circle at 0 0, #f2f2f2, #ffffff 98%);
+    }
 }

@@ -292,7 +292,6 @@ const Post = ({ data }) => {
                 </CommentPost>
             </YouLike>
             <Line />
-            <OthersArticles />
         </Layout>
     );
 };

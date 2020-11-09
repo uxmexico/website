@@ -24,7 +24,7 @@ const NextEvents = ({ events }) => {
 
     return (
         <EventsContainer>
-            <Heading>Próximos Eventos</Heading>
+            <Heading>Próximos Eventos UX</Heading>
 
             {events.map((event) => {
                 const {

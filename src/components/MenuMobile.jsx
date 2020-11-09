@@ -31,6 +31,7 @@ const NavLink = styled(Link)`
     font-weight: 600;
 
     &:hover {
+        text-decoration: none !important;
         &:after {
             content: "-";
             color: #ff1ac2;
@@ -57,6 +58,11 @@ const LogoText = styled.span`
     line-height: 1.45;
     color: #000000;
     padding: 0 8px;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
 `;
 
 const MenuMobile = ({onClose, className}) => {

@@ -28,6 +28,7 @@ const global = theme => css`
 
     a {
         color: ${theme.colors.link};
+        text-decoration: none;
     }
 
     img {

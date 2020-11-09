@@ -36,13 +36,13 @@ const EventDate = styled.p`
 const RowCenterButton = styled.div`
     display: flex;
     justify-content: center;
-`
+`;
 
 const CTAButton = styled.button`
     color: #fff;
     padding: 10px 30px;
     border: 0;
-    border-radius: 20px;
+    border-radius: 50px;
     box-shadow: 0 8px 12px 0 rgba(255, 26, 194, 0.16);
     background-image: linear-gradient(100deg, #ff1ac2, #ff1573);
     &:focus {
@@ -52,7 +52,11 @@ const CTAButton = styled.button`
 
 const FeaturedImage = styled.div`
     & div {
-        height: 450px;
+        height: 220px;
+
+        ${props => props.theme.breakpoints.desktop} {
+            height: 450px;
+        }
     }
 `
 
